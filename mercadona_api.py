@@ -83,10 +83,16 @@ def save_simple_products():
         writer.writeheader()
         writer.writerows(simple_products)
 
+    print(f"Saved {len(simple_products)} products to csv_files/simple_products.csv")
+
+
 if __name__ == "__main__":
     os.makedirs("csv_files", exist_ok=True)
-    show_simple_products()
+    #show_simple_products()
+    save_simple_products()
+    
 
+    
 
 
     
