@@ -4,7 +4,7 @@ from langchain_groq import ChatGroq
 import os
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
-from typing import Dict
+from typing import Dict, List
 
 # Load Environment Variables 
 load_dotenv()
@@ -52,11 +52,28 @@ class ClassifyAgent:
         """
         Classify the user's shopping intent and extract needed products.
         """
-        return self.chain.invoke({"input": self.user_input})
+        classify_result = self.chain.invoke({"input": self.user_input})
+        return classify_result 
+    
+    def get_products(self, classify_result: dict) -> List[str]:
+        """
+        Extract the product names from the classification result.
 
+        Returns:
+            List of product names (keys from the 'products' dictionary).
+        """
+        products_dict = classify_result.get("products", {})
+        return list(products_dict.keys())
+    
+    def get_intent(self, classify_result: dict) -> List[str]:
+        """
+        Extract the intent from the classification result.
+        """
+        return classify_result.get("intent", [])
 
 # Example Use with __name__ == "__main__" so that only runs when the file is executed directly
 if __name__ == "__main__":
     agent = ClassifyAgent("Voy a preparar una ensalada griega y necesito limpiar la cocina.")
     result = agent.classify()
-    print(result)
+    products = agent.get_products(result)
+    print(result, products)
