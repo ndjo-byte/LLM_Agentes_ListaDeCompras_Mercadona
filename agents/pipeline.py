@@ -1,5 +1,6 @@
 from classify_agent import ClassifyAgent
 from search_agent import SearchAgent
+from calculate_agent import CalculateAgent
 import pandas as pd
 
 # Load CSV Data to DataFrame
@@ -14,7 +15,8 @@ class ProductPipeline:
     def run(self):
         clfy_result = self.clfy_agent.classify()
         srch_result = self.srch_agent.search()
-        return srch_result
+        calc_result = CalculateAgent(srch_result, self.clfy_agent.get_product_quantities(clfy_result))
+        return calc_result.calculate()
 
 if __name__ == "__main__":
     pipeline = ProductPipeline("Voy a preparar una ensalada griega y necesito limpiar la cocina.")

@@ -45,7 +45,7 @@ class CalculateAgent:
         self.quantities = clfy_result_quantities  # list of (product, quantity)
         self.chain = prompt | llm
 
-    def run(self):
+    def calculate(self):
         # Convert list of tuples to string for the prompt
         quantity_str = "\n".join([f"- {product}: {quantity}" for product, quantity in self.quantities])
 
@@ -66,4 +66,4 @@ if __name__ == "__main__":
     srch_result = srch_agent.search()
 
     calc_agent = CalculateAgent(srch_result, clfy_result_quantities)
-    print(calc_agent.run())
+    print(calc_agent.calculate())
