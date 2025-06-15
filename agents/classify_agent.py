@@ -55,6 +55,7 @@ class ClassifyAgent:
         classify_result = self.chain.invoke({"input": self.user_input})
         return classify_result 
     
+    # For use with SearchAgent
     def get_products(self, classify_result: dict) -> List[str]:
         """
         Extract the product names from the classification result.
@@ -64,16 +65,26 @@ class ClassifyAgent:
         """
         products_dict = classify_result.get("products", {})
         return list(products_dict.keys())
+
+    # For use with CalculateAgent
+    def get_product_quantities(self, classify_result: dict) -> List[str]:
+        """
+        Extract the productquantities from the classification result. 
+        """
+        products_dict = classify_result.get("products", {})
+        return list(products_dict.items()) 
     
+    # Project Requirement 
     def get_intent(self, classify_result: dict) -> List[str]:
         """
         Extract the intent from the classification result.
         """
         return classify_result.get("intent", [])
 
-# Example Use with __name__ == "__main__" so that only runs when the file is executed directly
+
 if __name__ == "__main__":
     agent = ClassifyAgent("Voy a preparar una ensalada griega y necesito limpiar la cocina.")
     result = agent.classify()
     products = agent.get_products(result)
-    print(result, products)
+    quantities = agent.get_product_quantities(result)
+    print('result: ', result, 'products: ', products, 'quantities: ', quantities)
