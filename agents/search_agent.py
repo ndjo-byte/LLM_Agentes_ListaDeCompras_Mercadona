@@ -73,6 +73,8 @@ class SearchAgent:
         
 
 if __name__ == "__main__":
-    agent = SearchAgent(simple_products, ["leche entera", "pan", "queso"])
-    result = agent.search()
-    print(result.content)
+    clfy_agent = ClassifyAgent("Voy a preparar una ensalada griega y necesito limpiar la cocina.")
+    clfy_result = clfy_agent.classify()
+    srch_agent = SearchAgent(simple_products, clfy_agent.get_products(clfy_result))
+    srch_result = srch_agent.search()
+    print(srch_result.content)
