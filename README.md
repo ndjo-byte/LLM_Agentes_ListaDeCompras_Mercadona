@@ -96,16 +96,19 @@ product-assistant/
 
 ## ⚙️ Setup  
 
-**Clone the repo:**  
+1. **Clone the repo:**  
 git clone https://github.com/ndjo-byte/LLM_Agentes_ListaDeCompras_Mercadona.git  
 cd product-assistant  
-**Install dependencies:**  
+
+2. **Install dependencies:**  
 pip install -r requirements.txt  
-**Set your environment variables in .env:**  
+
+3. **Set your environment variables in .env:**  
 GROQ_API_KEY=your_api_key  
 CSV_PATH=/absolute/path/to/simple_products.csv  
-**Run the app or pipeline:**  
+4. **Run the app or pipeline:**  
 python main.py  
-**Optional: Launch Streamlit demo**  
+
+5. **Optional: Launch Streamlit demo**  
 streamlit run app.py  
 
