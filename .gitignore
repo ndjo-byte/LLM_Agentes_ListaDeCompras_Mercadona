@@ -15,3 +15,12 @@ venv/
 
 # dotenv secrets
 .env
+
+# Ignore all contents inside csv_files and txt
+csv_files/*
+txt/*
+
+# But keep the folders
+!csv_files/.gitkeep
+!txt/.gitkeep
+

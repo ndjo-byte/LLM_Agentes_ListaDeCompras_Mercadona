@@ -3,14 +3,17 @@ from langchain_groq import ChatGroq
 import os
 from dotenv import load_dotenv
 import pandas as pd 
-from classify_agent import ClassifyAgent
-from search_agent import SearchAgent
+from .classify_agent import ClassifyAgent
+from .search_agent import SearchAgent
 
-# Load CSV Data to DataFrame
-simple_products = pd.read_csv("../csv_files/simple_products.csv")
+
 
 # Load Environment Variables 
 load_dotenv()
+
+# Load CSV Data to DataFrame
+csv_path = os.getenv("CSV_PATH")
+simple_products = pd.read_csv(csv_path)
 
 # API Key
 api_key = os.getenv("GROQ_API_KEY")
