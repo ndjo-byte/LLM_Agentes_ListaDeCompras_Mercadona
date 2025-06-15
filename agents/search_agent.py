@@ -56,6 +56,9 @@ class SearchAgent:
     def search(self) -> str:
         """
         Use the LLM to match products from the ClassifyAgentproduct list products available in Mercadona product_data.
+
+        Returns:
+            str: The .content of the search result from the LLM.
         """
         available_products = self.get_available_products()
 
@@ -69,7 +72,7 @@ class SearchAgent:
         Devuélveme solo los productos de mi lista que están disponibles, con su nombre, formato y precio. Elige solo 1 producto por cada producto de la lista, el más barato.
         """
 
-        return self.chain.invoke({"user_input": user_input})
+        return self.chain.invoke({"user_input": user_input}).content
         
 
 if __name__ == "__main__":
@@ -77,4 +80,4 @@ if __name__ == "__main__":
     clfy_result = clfy_agent.classify()
     srch_agent = SearchAgent(simple_products, clfy_agent.get_products(clfy_result))
     srch_result = srch_agent.search()
-    print(srch_result.content)
+    print(srch_result)

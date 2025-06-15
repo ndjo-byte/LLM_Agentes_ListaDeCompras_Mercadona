@@ -14,7 +14,7 @@ class ProductPipeline:
     def run(self):
         clfy_result = self.clfy_agent.classify()
         srch_result = self.srch_agent.search()
-        return srch_result.content
+        return srch_result
 
 if __name__ == "__main__":
     pipeline = ProductPipeline("Voy a preparar una ensalada griega y necesito limpiar la cocina.")
