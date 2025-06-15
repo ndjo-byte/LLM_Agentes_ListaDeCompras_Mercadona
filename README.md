@@ -15,17 +15,16 @@ This project is based on three agent classes working in sequence:
 ### 1. ✔️ **ClassifyAgent**   
 - Classifies user intentions and extracts relevant products and quantities from free-form input.  
 - Returns a dictionary:  
-  ```python  
-  {
-    "intentions": ["cocina", "limpieza"],  
-    "products": {
-        "lechuga": "1",
-        "queso feta": "1 bloque",
-        ...
-    }
+```python
+{
+  "intentions": ["cocina", "limpieza"],
+  "products": {
+    "lechuga": "1",
+    "queso feta": "1 bloque"
+    # ...
   }
+}
 ```
-
 - Uses a simple ChatPromptTemplate, and has performed exceptionally even without FewShotPrompt examples.  
 - Provides:  
     classify() – Returns full classification dict.  
